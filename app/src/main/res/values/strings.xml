@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">CheckThatMovie</string>
+    <string name="app_name">Easy Tv Shows</string>
+    <string name="MostPopular">Most Popular</string>
+    <string name="Date">Date</string>
+    <string name="MovieName">Movie Name</string>
+    <string name="SelectedMovie">Selected Movie</string>
+    <string name="ConnectionError">Connection Error</string>
+    <string name="Search">Search</string>
 </resources>

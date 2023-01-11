@@ -1,4 +1,4 @@
-package com.example.checkthatmovie
+package com.example.easytvshows
 
 import org.junit.Test
 

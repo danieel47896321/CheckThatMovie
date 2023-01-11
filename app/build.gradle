@@ -7,7 +7,7 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.example.checkthatmovie"
+        applicationId 'com.example.easytvshows'
         minSdk 26
         targetSdk 32
         versionCode 1
@@ -32,6 +32,15 @@ android {
 }
 
 dependencies {
+    apply plugin: 'kotlin-parcelize'
+    //Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
+    //Gson
+    implementation 'com.google.code.gson:gson:2.8.5'
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
