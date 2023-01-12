@@ -16,7 +16,7 @@
         android:theme="@style/Theme.CheckThatMovie"
         tools:targetApi="31">
         <activity
-            android:name="com.example.easytvshows.SelectedMovie"
+            android:name="com.example.easytvshows.SelectedTvShow"
             android:exported="false" />
         <activity
             android:name="com.example.easytvshows.MainActivity"

@@ -4,23 +4,23 @@ import com.google.gson.annotations.SerializedName
 
 class TvShowModel {
     @SerializedName("id")
-    lateinit var id: Integer
+    var id: Int = 0
 
     @SerializedName("name")
-    lateinit var name: String
+    var name: String = ""
 
     @SerializedName("start_date")
-    lateinit var startDate: String
+    var startDate: String = ""
 
     @SerializedName("country")
-    lateinit var country: String
+    var country: String = ""
 
     @SerializedName("network")
-    lateinit var network: String
+    var network: String = ""
 
     @SerializedName("status")
-    lateinit var status: String
+    var status: String = ""
 
     @SerializedName("image_thumbnail_path")
-    lateinit var image: String
+    var image: String  = ""
 }

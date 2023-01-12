@@ -9,7 +9,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MostPopularTvShowsRepository {
+class MostPopularTvShowsRepository() {
     private var apiService: ApiService = ApiClient.getRetrofit()?.create(ApiService::class.java)!!
     fun getMostPopularTvShows(page: Int): LiveData<TvShowResponse>{
         val data: MutableLiveData<TvShowResponse> = MutableLiveData()

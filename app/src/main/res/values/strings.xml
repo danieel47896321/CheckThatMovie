@@ -2,8 +2,8 @@
     <string name="app_name">Easy Tv Shows</string>
     <string name="MostPopular">Most Popular</string>
     <string name="Date">Date</string>
-    <string name="MovieName">Movie Name</string>
-    <string name="SelectedMovie">Selected Movie</string>
-    <string name="ConnectionError">Connection Error</string>
+    <string name="TvShowName">Tv Show Name</string>
+    <string name="SelectedTvShow">Selected Tv Show</string>
     <string name="Search">Search</string>
+    <string name="TvShowImage">Tv Show Image</string>
 </resources>

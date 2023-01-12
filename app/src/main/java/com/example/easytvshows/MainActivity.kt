@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
-import com.example.easytvshows.adapter.MovieAdapter
+import com.example.easytvshows.adapter.TvShowAdapter
 import com.example.easytvshows.model.TvShowModel
 import com.example.easytvshows.viewmodel.MostPopularTvShowsViewModel
 
@@ -18,7 +18,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var backIcon: ImageView
     private lateinit var recyclerView : RecyclerView
     private lateinit var progressBar: ProgressBar
+    private var currentPage = 1
+    private var totalPages: Int = 1
     private var movieList = ArrayList<TvShowModel>()
+    private var tvShowAdapter = TvShowAdapter(movieList)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -31,17 +34,32 @@ class MainActivity : AppCompatActivity() {
         backIcon = findViewById<ImageView>(R.id.backIcon)
         backIcon.visibility = View.GONE
         recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        recyclerView.adapter = tvShowAdapter
         getMovies()
+        setScrollView()
+    }
+    private fun setScrollView() {
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if(recyclerView.canScrollVertically(1)){
+                    if(currentPage <= totalPages) {
+                        currentPage++
+                        getMovies()
+                    }
+                }
+            }
+        })
     }
     private fun getMovies() {
-        mostPopularTvShowsViewModel.getMostPopularTvShows(0).observe(this) { most ->
-            movieList.addAll(most.tvShows)
+        mostPopularTvShowsViewModel.getMostPopularTvShows(currentPage).observe(this) { mostPopularTvShows ->
             progressBar.visibility = View.GONE
-            setMovies()
+            if(mostPopularTvShows != null) {
+                totalPages = mostPopularTvShows.totalPages
+                val oldSize = movieList.size
+                movieList.addAll(mostPopularTvShows.tvShows)
+                tvShowAdapter.notifyItemRangeInserted(oldSize, movieList.size)
+            }
         }
-    }
-    private fun setMovies() {
-        val movieAdapter = MovieAdapter(movieList)
-        recyclerView.adapter = movieAdapter
     }
 }

@@ -18,6 +18,7 @@
         android:orientation="vertical">
 
         <ImageView
+            android:contentDescription="@string/TvShowImage"
             android:id="@+id/imageViewMovie"
             android:scaleType="centerCrop"
             android:layout_width="match_parent"
@@ -25,11 +26,11 @@
             android:src="@drawable/ic_launcher_background" />
 
         <TextView
-            android:id="@+id/textViewMovieName"
+            android:id="@+id/textViewTvShowName"
             style="@style/TextView_Movie_Style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/MovieName"
+            android:text="@string/TvShowName"
             android:textSize="20sp"
             android:textStyle="bold" />
 
