@@ -1,5 +1,6 @@
 package com.example.easytvshows.adapter
 
+import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -33,7 +34,7 @@ class TvShowAdapter (noteList: ArrayList<TvShowModel>) : RecyclerView.Adapter<Tv
             intent.putExtra("SelectedTvShowCountry", list[position].country)
             intent.putExtra("SelectedTvShowStatus", list[position].status)
             holder.itemView.context.startActivity(intent)
-            //(holder.itemView.context as Activity).finish()
+            (holder.itemView.context as Activity).finish()
         }
     }
     override fun getItemCount(): Int { return list.size }
