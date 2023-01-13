@@ -54,11 +54,13 @@ class MainActivity : AppCompatActivity() {
     private fun getMovies() {
         mostPopularTvShowsViewModel.getMostPopularTvShows(currentPage).observe(this) { mostPopularTvShows ->
             progressBar.visibility = View.GONE
+            val currentSize = movieList.size
             if(mostPopularTvShows != null) {
                 totalPages = mostPopularTvShows.totalPages
-                val oldSize = movieList.size
                 movieList.addAll(mostPopularTvShows.tvShows)
-                tvShowAdapter.notifyItemRangeInserted(oldSize, movieList.size)
+                tvShowAdapter.notifyItemRangeInserted(currentSize, movieList.size)
+            } else {
+                tvShowAdapter.notifyItemRangeInserted(0, currentSize)
             }
         }
     }
