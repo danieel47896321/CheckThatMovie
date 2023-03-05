@@ -1,6 +1,5 @@
 package com.example.easytvshows.adapter
 
-import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -14,9 +13,7 @@ import com.example.easytvshows.R
 import com.example.easytvshows.SelectedTvShow
 import com.example.easytvshows.model.TvShowModel
 
-class TvShowAdapter (noteList: ArrayList<TvShowModel>) : RecyclerView.Adapter<TvShowAdapter.ViewHolder>() {
-    private var list = ArrayList<TvShowModel>()
-    init { list = noteList }
+class TvShowAdapter(private var list: ArrayList<TvShowModel>) : RecyclerView.Adapter<TvShowAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TvShowAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.movie_view, parent, false)
         return ViewHolder(v)
@@ -25,7 +22,7 @@ class TvShowAdapter (noteList: ArrayList<TvShowModel>) : RecyclerView.Adapter<Tv
         holder.textViewMovieName.text = list[position].name
         holder.textViewDate.text = list[position].startDate
         Glide.with(holder.itemView).load(list[position].image).into(holder.imageViewMovie)
-        holder.linearLayout.setOnClickListener{
+        holder.linearLayout.setOnClickListener {
             val intent = Intent(holder.itemView.context, SelectedTvShow::class.java)
             intent.putExtra("SelectedTvShowName", list[position].name)
             intent.putExtra("SelectedTvShowImage", list[position].image)
@@ -34,7 +31,6 @@ class TvShowAdapter (noteList: ArrayList<TvShowModel>) : RecyclerView.Adapter<Tv
             intent.putExtra("SelectedTvShowCountry", list[position].country)
             intent.putExtra("SelectedTvShowStatus", list[position].status)
             holder.itemView.context.startActivity(intent)
-            (holder.itemView.context as Activity).finish()
         }
     }
     override fun getItemCount(): Int { return list.size }

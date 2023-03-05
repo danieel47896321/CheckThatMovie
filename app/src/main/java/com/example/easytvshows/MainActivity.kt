@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.easytvshows.adapter.TvShowAdapter
 import com.example.easytvshows.model.TvShowModel
 import com.example.easytvshows.viewmodel.MostPopularTvShowsViewModel
-
 class MainActivity : AppCompatActivity() {
     private lateinit var mostPopularTvShowsViewModel: MostPopularTvShowsViewModel
     private lateinit var title: TextView
@@ -35,32 +34,30 @@ class MainActivity : AppCompatActivity() {
         backIcon.visibility = View.GONE
         recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.adapter = tvShowAdapter
-        getMovies()
-        setScrollView()
-    }
-    private fun setScrollView() {
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                if(recyclerView.canScrollVertically(1)){
-                    if(currentPage <= totalPages) {
+                if (recyclerView.canScrollVertically(1)) {
+                    if (currentPage <= totalPages) {
                         currentPage++
                         getMovies()
                     }
                 }
             }
         })
+        getMovies()
+
     }
     private fun getMovies() {
         mostPopularTvShowsViewModel.getMostPopularTvShows(currentPage).observe(this) { mostPopularTvShows ->
-            progressBar.visibility = View.GONE
             val currentSize = movieList.size
-            if(mostPopularTvShows != null) {
+            progressBar.visibility = View.GONE
+            if (mostPopularTvShows != null) {
                 totalPages = mostPopularTvShows.totalPages
-                movieList.addAll(mostPopularTvShows.tvShows)
-                tvShowAdapter.notifyItemRangeInserted(currentSize, movieList.size)
-            } else {
-                tvShowAdapter.notifyItemRangeInserted(0, currentSize)
+                if (mostPopularTvShows.tvShows != null) {
+                    movieList.addAll(mostPopularTvShows.tvShows)
+                    tvShowAdapter.notifyItemRangeInserted(currentSize, movieList.size)
+                }
             }
         }
     }

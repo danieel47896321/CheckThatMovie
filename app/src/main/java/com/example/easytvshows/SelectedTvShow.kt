@@ -1,6 +1,5 @@
 package com.example.easytvshows
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
@@ -55,7 +54,6 @@ class SelectedTvShow : AppCompatActivity() {
     }
     override fun onBackPressed() {
         super.onBackPressed()
-        startActivity(Intent(this, MainActivity :: class.java))
         finish()
     }
 }
